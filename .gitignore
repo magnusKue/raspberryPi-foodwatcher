@@ -1,3 +1,6 @@
-productsTemplate.json
 data/products.json
-test.py
+
+
+__pycache__/
+*.py[cod]
+*$py.class
