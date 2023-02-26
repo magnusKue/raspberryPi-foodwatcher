@@ -1,0 +1,25 @@
+{
+    "knownProducts": 
+    {
+        "qrCode": {
+            "name":"cock",
+            "days":"5"
+        }
+    },
+    
+    "inventory": 
+    {
+        "name": {
+            "1":{
+                "code":"code",
+                "storedDate":"05.10.2022",
+                "days":"5"
+            }
+        },
+        "name2": { 
+            "code":"-1",
+            "storedDate":"123423143412",
+            "days":"5"
+        }
+    }
+}

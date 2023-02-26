@@ -1,0 +1,14 @@
+# Adjust values here
+
+screenSize = [1024,600]
+
+
+# theme
+
+cBackground = "#1c2130"
+
+cUi1 = "#c75233"
+cUiHighlighted1 = "#eb9c4d"
+
+cUi2 = "#fa6900"
+cUiHighlighted2 = "#f38630"

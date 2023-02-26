@@ -1,0 +1,4 @@
+pygame # tested with v.2.1.2
+openfoodfacts
+toml
+json
