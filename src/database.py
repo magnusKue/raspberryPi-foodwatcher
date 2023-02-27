@@ -1,3 +1,5 @@
+# This File is used to dump and load data to and from the database 
+
 import json
 import time, os.path
 import pages

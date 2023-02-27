@@ -1,3 +1,5 @@
+# this File contains the UI elements that are owned by the pages in pages.py
+
 import pygame
 import utilities
 import os.path

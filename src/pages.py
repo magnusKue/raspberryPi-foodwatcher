@@ -1,3 +1,5 @@
+# This File contains the pages that are owned by the main file. The currently accessed page is always pVs.currentpage
+
 import pygame 
 from pygame.locals import *
 import UiElements as ui

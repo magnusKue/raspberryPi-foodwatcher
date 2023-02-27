@@ -1,3 +1,5 @@
+# this file contains the actual openFoodFacts api call and delivers a result to the scanPage
+
 import openfoodfacts as off 
 
 
