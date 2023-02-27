@@ -174,16 +174,15 @@ class ScanPage:
 
         kevent = False
         for event in events:
-            if event.type == KEYDOWN:
-                self.text += event.unicode
+            if event.type == TEXTINPUT:
+                self.text += event.text
                 kevent = True
                 self.framesSinceKeyevent = 0
         
         if not kevent:
             self.framesSinceKeyevent += 1
 
-        if oldtext == self.text and len(self.text) > 1 and self.framesSinceKeyevent > 30:
-            #print("registered "+self.text)
+        if oldtext == self.text and len(self.text) > 1 and self.framesSinceKeyevent > 8:
             self.text = self.text.replace("\r", "")
             
             result = self.prodGetter.getProduct(self.text)
