@@ -1,0 +1,74 @@
+{
+    "inventory": {
+        "Wasser : Aspacher Klosterquelle": {
+            "0": {
+                "code": "4008073125206",
+                "days": 8,
+                "storedDate": 20
+            }
+        },
+        "cock": {
+            "0": {
+                "code": "4008073125206",
+                "days": 8,
+                "storedDate": 55000
+            }
+        },
+        "loli": {
+            "0": {
+                "code": "4008073125206",
+                "days": 8,
+                "storedDate": 553000
+            }
+        },
+        "apfel": {
+            "0": {
+                "code": "4008073125206",
+                "days": 8,
+                "storedDate": 550400
+            }
+        },
+        "paprika": {
+            "0": {
+                "code": "4008073125206",
+                "days": 8,
+                "storedDate": 554000
+            }
+        },
+        "käse": {
+            "0": {
+                "code": "4008073125206",
+                "days": 8,
+                "storedDate": 550500
+            }
+        },
+        "salami": {
+            "0": {
+                "code": "4008073125206",
+                "days": 8,
+                "storedDate": 555000
+            }
+        },
+        "gurke": {
+            "0": {
+                "code": "4008073125206",
+                "days": 8,
+                "storedDate": 550600
+            }
+        },
+        "fiji wasser": {
+            "0": {
+                "code": "4008073125206",
+                "days": 8,
+                "storedDate": 556000
+            }
+        }
+    },
+    "knownProducts": {
+        "4008073125206": {
+            "code": "4008073125206",
+            "days": 8,
+            "name": "Wasser : Aspacher Klosterquelle"
+        }
+    }
+}

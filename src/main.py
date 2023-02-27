@@ -18,7 +18,6 @@ from pages import *
 class PVs: # general project variables
     def __init__(self):
         self.screenSize = pygame.Vector2(500,300)
-        self.hideMouse = False
         self.currentPage = None
         
         self.sendMailNotification = True
@@ -41,7 +40,6 @@ class PVs: # general project variables
         self.hideMouse = data["hideMouse"]
         self.screenSize = pygame.Vector2(data["screenSize"][0], data["screenSize"][1])
 
-        self.sendMailNotification = bool(data["mailWarning"])
 
         self.cBackground = pygame.Color("#"+data["cBackground"].replace("#", ""))
 

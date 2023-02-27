@@ -3,10 +3,6 @@
 screenSize = [1020,600]
 hideMouse = false
 
-# warning
-mailWarning = true
-email = ""
-
 # theme
 
 cBackground = "#1c2130"
