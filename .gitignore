@@ -1,6 +1,6 @@
-data/products.json
-data/products.json.fullist
-data/alreadyWarned.json
+ide/products.json
+ide/products.json.fullist
+ide/alreadyWarned.json
 
 
 __pycache__/
