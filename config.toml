@@ -1,7 +1,7 @@
 # Adjust values here
 
 screenSize = [1024,600]
-
+hideMouse = false
 
 # theme
 

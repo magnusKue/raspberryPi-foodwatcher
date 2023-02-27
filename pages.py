@@ -120,6 +120,8 @@ class ScanPage:
         self.name = "scan page"
         self.mode = 1 # 0 = remove product | 1 = add product
         self.prodGetter = productGetter.ProductGetter()
+
+        self.framesSinceKeyevent = 0
         sx = pVs.screenSize.x
         sy = pVs.screenSize.y
 
@@ -169,11 +171,18 @@ class ScanPage:
 
     def update(self, events, pVs):
         oldtext = self.text
+
+        kevent = False
         for event in events:
             if event.type == KEYDOWN:
                 self.text += event.unicode
+                kevent = True
+                self.framesSinceKeyevent = 0
+        
+        if not kevent:
+            self.framesSinceKeyevent += 1
 
-        if oldtext == self.text and len(self.text) > 1:
+        if oldtext == self.text and len(self.text) > 1 and self.framesSinceKeyevent > 30:
             #print("registered "+self.text)
             self.text = self.text.replace("\r", "")
             
@@ -182,11 +191,10 @@ class ScanPage:
                 pVs.currentPage = addProductPage(pVs) 
 
                 if result != 0:
-                    self.text
-                    brand = result["brand"]
-                    name = result["name"]
+                    name = " : ".join([result[key] for key in list(result.keys())])
+                    pVs.currentPage.product["name"] = name
+
                     pVs.currentPage.code = self.text
-                    pVs.currentPage.product["name"] = brand+": "+name
 
                     found, resName, resDays = pVs.manager.searchProductByCode(self.text)
                     if found:

@@ -92,7 +92,7 @@ class Image:
 
         self.scaleFactor = scaleFactor
         
-        self.image = pygame.image.load("res\\"+str(src)).convert_alpha()
+        self.image = pygame.image.load("res/"+str(src)).convert_alpha()
         self.origImgSize = self.image.get_rect()
         
         self.surface =  pygame.transform.scale(self.image,(self.origImgSize.w * scaleFactor, self.origImgSize.h * scaleFactor))
