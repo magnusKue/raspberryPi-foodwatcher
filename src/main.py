@@ -3,6 +3,8 @@
 import os, sys
 import toml as tomllib
 import database as database
+
+from utilities import *
 # hide pygamesa buildt in welcome message
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide" # disable pygame welcome message
 
@@ -19,6 +21,7 @@ class PVs: # general project variables
         self.hideMouse = False
         self.currentPage = None
         
+        self.sendMailNotification = True
         self.cBackground = pygame.Color("0x242331")
 
         self.cUi1 = pygame.Color("0x40531b")
@@ -34,8 +37,11 @@ class PVs: # general project variables
     def loadTOML(self):
         with open(os.path.dirname(__file__) + "/../config.toml", "r") as f:
             data = tomllib.load(f)
+
         self.hideMouse = data["hideMouse"]
         self.screenSize = pygame.Vector2(data["screenSize"][0], data["screenSize"][1])
+
+        self.sendMailNotification = bool(data["mailWarning"])
 
         self.cBackground = pygame.Color("#"+data["cBackground"].replace("#", ""))
 
@@ -60,7 +66,7 @@ root = pygame.display.set_mode(flags=pygame.FULLSCREEN) # main display object
 while running:
     # store events so we can pass them onto the pages
     events = pygame.event.get()
-    print(events)
+
     # handle quit event
     if pygame.QUIT in [event.type for event in events]:
         running = False
@@ -69,6 +75,8 @@ while running:
     pageSurface = pVs.currentPage.render(pVs, pygame.mouse.get_pos(), events)
 
     root.blit(pageSurface, (0,0))
+
+    checkForExpiredProducts(pVs)
 
     pygame.display.flip()
 

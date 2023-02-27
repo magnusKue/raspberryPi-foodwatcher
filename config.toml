@@ -1,7 +1,11 @@
 # Adjust values here
 
-screenSize = [1024,600]
+screenSize = [1020,600]
 hideMouse = false
+
+# warning
+mailWarning = true
+email = ""
 
 # theme
 

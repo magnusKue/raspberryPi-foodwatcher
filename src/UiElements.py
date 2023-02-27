@@ -44,8 +44,6 @@ class Button:
 
     def update(self, pVs, mousePos, events):
         # mouse hover / clicked
-        #print(self.checkCollision(mousePos, events))
-        #print(mousePos)
         self.state = 1 * self.checkCollision(mousePos, events)
 
         if pygame.MOUSEBUTTONDOWN in [event.type for event in events] and self.state == 1: 
@@ -63,10 +61,10 @@ class Button:
             self.function(pVs)
 
 class Label:
-    def __init__(self, font, pos=pygame.Vector2(0,0), size=pygame.Vector2(30,30), displayName="Label"):
+    def __init__(self, font:pygame.font.Font, pos=pygame.Vector2(0,0), size=pygame.Vector2(30,30), displayName:str="Label", warningColor=False):
         
         self.font = font
-
+        self.warning = warningColor
         self.displayName = displayName
         self.position = pos
         self.size = size
@@ -76,8 +74,10 @@ class Label:
     def render(self, pVs):
         self.surface = pygame.Surface([self.size.x, self.size.y], pygame.SRCALPHA)
 
-        color = pVs.cUi2
-
+        if not self.warning:
+            color = pVs.cUi2
+        else: 
+            color = pygame.Color(255,0,0)
         img = self.font.render(self.displayName, True, color)
         textRect = img.get_rect(center=(self.surface.get_width()/2, self.surface.get_height()/2))
         self.surface.blit(img, textRect)

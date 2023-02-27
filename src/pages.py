@@ -463,7 +463,7 @@ class KeyboardPage:
         ]
 
         columns = 8
-        buttonSize = 100
+        buttonSize = int(100 * (sx/1020))
         keyboardSize = pygame.Vector2((columns * buttonSize) + ((columns-1) * 4), 100)
         offs = pygame.Vector2(int(sy*0.1), int((sx - keyboardSize.x) / 2))
         for x, item in enumerate(self.keys):
@@ -647,8 +647,121 @@ class removeProductPage:
     ## Functions executed by buttons
 
     def BFremove(self, pVs, name):
-        print("removing "+str(name))
         pVs.manager.removeProductFromInventoryByName(pVs, name)
+
+    def BFlast(self, pVs):
+        self.currentPage = max(0, self.currentPage-1)
+
+    def BFnext(self, pVs):
+        if len(list(self.inventory.keys())) > (self.currentPage+1) * self.maxElementsPerPage:
+            self.currentPage += 1
+
+    def BFhome(self, pVs):
+        pVs.currentPage = HomePage(pVs)
+
+
+class expiryWarningPage:
+    def __init__(self, pVs, expiredProducts):
+        self.name = "remove product page"
+        sx = pVs.screenSize.x
+        sy = pVs.screenSize.y
+
+        self.inventory = expiredProducts
+        self.maxElementsPerPage = 6
+        self.currentPage = 0
+        self.uiElements = []
+
+
+    def render(self, pVars, mousePos, events):
+        self.update(pVars)
+
+        mainSurface = pygame.Surface(pVars.screenSize)
+        mainSurface.fill(pVars.cBackground)
+        for element in self.uiElements:
+            elemSurf = element.update(pVars, mousePos, events)
+            mainSurface.blit(elemSurf, element.position)
+
+        return mainSurface
+
+    def update(self, pVs):
+        self.uiElements = []
+        sx = pVs.screenSize.x
+        sy = pVs.screenSize.y
+        size = 0.07
+
+        self.uiElements.append( 
+            ui.Button(
+                pygame.font.Font(None, 24),
+                self.BFhome,
+                pygame.Vector2(8,  int(sy * .9 - (0.5*(sx*size)))),
+                pygame.Vector2(int(sx*size*1.5), sx*size),
+                "okay"
+            )
+        )
+        
+        if self.currentPage > 0:
+            self.uiElements.append (
+                    ui.Button(pygame.font.Font(None, 24),
+                    self.BFlast,
+                    pygame.Vector2(int(sx * .333 - (0.5*(sx*size))),  int(sy * .9 - (0.5*(sx*size)))),
+                    pygame.Vector2(sx*size, sx*size),
+                    "previous"
+                )
+            )
+
+        self.uiElements.append (
+                ui.Label(
+                pygame.font.Font(None, 48),
+                pygame.Vector2(int(sx * .5 - (0.5*(sx*size))),  int(sy * .9 - (0.5*(sx*size)))),
+                pygame.Vector2(sx*size, sx*size),
+                str(self.currentPage+1) + " / " + str(max(1, math.ceil( len(list(self.inventory.keys())) / self.maxElementsPerPage)))
+            )
+        )
+
+        self.uiElements.append (
+                ui.Label(
+                pygame.font.Font(None, 48),
+                pygame.Vector2(10, 10),
+                pygame.Vector2(sx-20, sx*size),
+                "oh no! " + str(len(self.inventory)) + " of your products expired ",
+                True
+            )
+        )
+
+        if len(list(self.inventory.keys())) == 0:
+            self.uiElements.append( 
+                ui.Label(pygame.font.Font(None, 48),
+                    pygame.Vector2(0,0),
+                    pygame.Vector2(sx, sy),
+                    "no expired products"
+                )
+            )
+
+        if len(list(self.inventory.keys())) > (self.currentPage+1) * self.maxElementsPerPage:
+            self.uiElements.append( 
+                ui.Button(pygame.font.Font(None, 24),
+                    self.BFnext,
+                    pygame.Vector2(int(sx * .666 - (0.5*(sx*size))),  int(sy * .9 - (0.5*(sx*size)))),
+                    pygame.Vector2(sx*size, sx*size),
+                    "next"
+                )
+            )
+
+        for i in range(min(self.maxElementsPerPage-1, len( list(self.inventory.keys())[0+(self.currentPage * (self.maxElementsPerPage-1)):]  ))):
+            x = i+(self.currentPage * (self.maxElementsPerPage-1))
+            #x=i
+            name = str(list(self.inventory.keys())[x]) + " expired since " + str(self.inventory[list(self.inventory.keys())[x]]) + " days"
+            count = self.inventory[list(self.inventory.keys())[x]]
+            ySize = (sy * 0.7) / self.maxElementsPerPage
+            label = ui.Label(
+                pygame.font.Font(None, 36),
+                pygame.Vector2(4,int(100 + 8 + ((x%(self.maxElementsPerPage-1))*ySize + (((x%(self.maxElementsPerPage-1))-1)*4)))),
+                pygame.Vector2(sx - 8, int(ySize - (100/self.maxElementsPerPage))),
+                name
+                )
+            self.uiElements.append(label)
+
+    ## Functions executed by buttons
 
     def BFlast(self, pVs):
         self.currentPage = max(0, self.currentPage-1)

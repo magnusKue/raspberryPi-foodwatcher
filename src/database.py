@@ -7,6 +7,7 @@ import pages
 class Manager:
     def __init__(self):
         self.dest = os.path.dirname(__file__)+"/../ide/products.json"
+        self.csvPath = os.path.dirname(__file__) + "/../ide/alreadyWarned.csv"
 
 
     def addProductToInventory(self, name, days, code):
@@ -128,6 +129,20 @@ class Manager:
             result[str(prodType)] = len(list(data["inventory"][prodType].keys()))
         
         return result
+    
+    def getInventoryAndExpireDates(self):
+        with open(self.dest, "r") as fp:
+            data = json.load(fp)
+        inventory = {}
+        for productName in list(data["inventory"].keys()):
+            for index in list(data["inventory"][productName].keys()):
+                timestamp = data["inventory"][productName][index]["storedDate"]
+                days = data["inventory"][productName][index]["days"]
+                inventory[productName] = {
+                    "timeStamp":timestamp,
+                    "days":days
+                }
+        return inventory
 
     def searchProductByCode(self, code):
         found = False
@@ -149,3 +164,7 @@ class Manager:
             template = {"inventory":{},"knownProducts":{}}
             with open(self.dest, "w") as fp:
                 json.dump(template, fp, sort_keys=True, indent=4)
+        
+        if not os.path.isfile(self.csvPath):
+            f = open(self.csvPath, "x")
+            f.close()
