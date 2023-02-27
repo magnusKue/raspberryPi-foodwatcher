@@ -2,7 +2,7 @@
 
 import os, sys
 import toml as tomllib
-import database
+import database as database
 # hide pygamesa buildt in welcome message
 os.environ['PYGAME_HIDE_SUPPORT_PROMPT'] = "hide" # disable pygame welcome message
 
@@ -32,7 +32,7 @@ class PVs: # general project variables
         self.loadTOML()
 
     def loadTOML(self):
-        with open("config.toml", "r") as f:
+        with open(os.path.dirname(__file__) + "/../config.toml", "r") as f:
             data = tomllib.load(f)
         self.hideMouse = data["hideMouse"]
         self.screenSize = pygame.Vector2(data["screenSize"][0], data["screenSize"][1])

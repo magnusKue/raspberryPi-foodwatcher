@@ -1,0 +1,18 @@
+{
+    "inventory": {
+        "Wasser : Aspacher Klosterquelle": {
+            "0": {
+                "code": "4008073125206",
+                "days": 8,
+                "storedDate": 1677525239.456819
+            }
+        }
+    },
+    "knownProducts": {
+        "4008073125206": {
+            "code": "4008073125206",
+            "days": 8,
+            "name": "Wasser : Aspacher Klosterquelle"
+        }
+    }
+}

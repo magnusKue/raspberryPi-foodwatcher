@@ -4,7 +4,7 @@ import pages
 
 class Manager:
     def __init__(self):
-        self.dest = "data\\products.json"
+        self.dest = os.path.dirname(__file__)+"/../ide/products.json"
 
 
     def addProductToInventory(self, name, days, code):
