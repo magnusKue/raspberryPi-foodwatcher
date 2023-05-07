@@ -4,7 +4,7 @@
 This Raspberry Pi project reduces food waste by allowing users to input perishable food items using a barcode scanner or an user interface and receive notifications before they expire.
 
 ## Why? _do you need this?_
-Food waste in households is a major problem, causing economic, social, and environmental issues. It leads to resource loss and contributes to greenhouse gas emissions. Reducing food waste is crucial for promoting sustainability.
+Food waste in households is a major problem, causing economic and environmental issues. It leads to resource loss and contributes to greenhouse gas emissions. Reducing food waste is crucial for promoting sustainability.
 
 ## What? _do you need?_
 1. raspberry Pi
@@ -12,4 +12,7 @@ Food waste in households is a major problem, causing economic, social, and envir
 3. a touch display of any size
 
 ## How? _do you set it up?_
-..to come
+1. Set your raspberry pi up with a graphical operating system
+2. Clone this repository using git
+3. Follow instructions to automatically launch src/main.py on startup (https://www.instructables.com/Raspberry-Pi-Launch-Python-script-on-startup/)
+4. Adjust settings to your liking by editing "config.toml"
