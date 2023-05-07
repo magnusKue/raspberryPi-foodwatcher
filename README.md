@@ -12,7 +12,7 @@ Food waste in households is a major problem, causing economic and environmental 
 3. a touch display of any size
 
 ## How? _do you set it up?_
-1. Set your raspberry pi up with a graphical operating system
+1. Set your raspberry pi up with a graphics-based operating system
 2. Clone this repository using git
 3. Follow instructions to automatically launch src/main.py on startup (https://www.instructables.com/Raspberry-Pi-Launch-Python-script-on-startup/)
 4. Adjust settings to your liking by editing "config.toml"
